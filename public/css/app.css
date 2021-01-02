@@ -1,0 +1,150 @@
+/*/TextArea/*/input:focus, input.form-control:focus {
+/*/TextArea/*/    outline:none !important;
+/*/TextArea/*/    outline-width: 0 !important;
+/*/TextArea/*/    box-shadow: none;
+/*/TextArea/*/    -moz-box-shadow: none;
+/*/TextArea/*/    -webkit-box-shadow: none;
+/*/TextArea/*/}
+/*/TextArea/*/
+/*/TextArea/*/textarea:focus, textarea.form-control:focus {
+/*/TextArea/*/    outline:none !important;
+/*/TextArea/*/    outline-width: 0 !important;
+/*/TextArea/*/    box-shadow: none;
+/*/TextArea/*/    -moz-box-shadow: none;
+/*/TextArea/*/    -webkit-box-shadow: none;
+/*/TextArea/*/}
+/*/TextArea/*/.formulario-control {
+/*/TextArea/*/    display: block;
+/*/TextArea/*/    width: 100%;
+/*/TextArea/*/    height: 200px;
+/*/TextArea/*/    padding: .375rem .75rem;
+/*/TextArea/*/    font-size: .9rem;
+/*/TextArea/*/    font-weight: 400;
+/*/TextArea/*/    line-height: 1.5;
+/*/TextArea/*/    /*color: #EAEAEA!important;*/
+/*/TextArea/*/    background-color: #fff;
+/*/TextArea/*/    background-clip: padding-box;
+/*/TextArea/*/    /*border: 1px solid #ced4da!important;*/
+/*/TextArea/*/    border-radius: .25rem;
+/*/TextArea/*/    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+/*/TextArea/*/  }
+/*/TextArea/*/
+/*/TextArea/*/.formulario-control.textborder1 {
+/*/TextArea/*/    border: 1px solid #ced4da!important;
+/*/TextArea/*/    color: #ced4da!important ;
+/*/TextArea/*/}
+/*/TextArea/*/
+/*/TextArea/*/.formulario-control.textborder4 {
+/*/TextArea/*/    border: 1px solid #1F668F!important;
+/*/TextArea/*/    color: #1F668F!important ;
+/*/TextArea/*/}
+
+
+.trListaCart {
+    background-color: #adddea;
+    /*border: 2px #fff solid;*/
+    padding: 4px 19px 4px 19px;
+}
+
+a {
+    
+}
+
+.card-header {
+    padding: .75rem 0.25rem;
+}
+
+/*body { background-color: #02708b ; }*/
+.bg-menu { background-color: #02708b ; }
+.bg-1 { background-color: #02708b ; }
+.bg-2 { background-color: #a9050a ; }
+.bg-3 { background-color: #BEA281 ; }
+.bg-4 { background-color: #ADDDEA ; }
+.bg-5 { background-color: #00252E ; }
+.bg-transparent { background-color: transparent ; }
+
+.border-1 { border: 1px solid #02708b!important ; }
+.border-2 { border: 1px solid #a9050a!important ; }
+.border-3 { border: 1px solid #BEA281!important ; }
+.border-4 { border: 1px solid #ADDDEA!important ; }
+.border-5 { border: 1px solid #00252E!important ; }
+.bg-transparent { border-color: transparent; }
+
+.text-1 { color: #02708b!important ; }
+.text-2 { color: #a9050a!important ; }
+.text-3 { color: #BEA281 ; }
+.text-4 { color: #ADDDEA!important ; }
+.text-5 { color: #00252E ; }
+
+.btn-1 { color: #fff ; background-color: #02708b ; border: #02708b ; }
+.btn-2 { color: #fff ; background-color: #a9050a ; border: #a9050a ; }
+.btn-3 { color: #fff ; background-color: #BEA281 ; border: #BEA281 ; }
+.btn-4 { color: #fff ; background-color: #ADDDEA ; border: #ADDDEA ; }
+.btn-5 { color: #fff ; background-color: #00252E ; border: #00252E ; }
+
+.nomargin {
+    margin-right: 0px ;
+    margin-left: 0px ;
+}
+
+.nopadding {
+    padding-right: 0px ;
+    padding-left: 0px ;
+}
+
+.navis {
+    position: fixed ;
+    z-index: 1;
+}
+.logotipo {
+    display: block ;
+    margin: auto ;
+}
+
+/*
+ADDDEA
+02708b
+*/
+.degradado1 {
+    background: -webkit-linear-gradient(#02708b, #ADDDEA);
+    background: -o-linear-gradient(#02708b, #ADDDEA);
+    background: -moz-linear-gradient(#02708b, #ADDDEA);
+    background: linear-gradient(#02708b, #ADDDEA);
+}
+.degradado2 {
+    background: -webkit-linear-gradient(#ADDDEA, #FFFFFF);
+    background: -o-linear-gradient(#ADDDEA, #FFFFFF);
+    background: -moz-linear-gradient(#ADDDEA, #FFFFFF);
+    background: linear-gradient(#ADDDEA, #FFFFFF);
+}
+.degradado3 {
+    background: -webkit-linear-gradient(#FFFFFF, #ADDDEA);
+    background: -o-linear-gradient(#FFFFFF, #ADDDEA);
+    background: -moz-linear-gradient(#FFFFFF, #ADDDEA);
+    background: linear-gradient(#FFFFFF, #ADDDEA);
+}
+.height-1 { height: 250px ; }
+.height-2 { height: 170px ; }
+.width-1 { width: 200px; }
+.borde-letra1 {
+    -webkit-text-stroke: 0.4px #02708b;
+    color: transparent; 
+}
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #1a3c5f;
+    border-radius: 41px;
+} 
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(48 151 202);
+    border-radius: 5px;
+}
+
+.imagen {
+    width: 100% ;
+    height: 150px ;
+}
