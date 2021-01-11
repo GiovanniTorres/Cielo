@@ -75,6 +75,8 @@ a {
 .text-3 { color: #BEA281 ; }
 .text-4 { color: #ADDDEA!important ; }
 .text-5 { color: #00252E ; }
+.text-6 { color: #909090 ; }
+.underline_ok { text-decoration: underline ; }
 
 .btn-1 { color: #fff ; background-color: #02708b ; border: #02708b ; }
 .btn-2 { color: #fff ; background-color: #a9050a ; border: #a9050a ; }

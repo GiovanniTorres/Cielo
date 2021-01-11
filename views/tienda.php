@@ -6,27 +6,30 @@ $grupo_actual = $divide [1];
 /*Página actual*/
 $pagina_actual = $divide[2] ;
 /*Obtenemos la canidad de articulos existentes en la BD*/
-$total_de_articulos = $countarticulo + 0 ;
+$total_de_articulos = $countarticulo ;
 /*Determinar cantidad de articulos visibles por página*/
-$articulos_por_pagina = 6 ;
+$articulos_por_pagina = 1 ;
 /*Determinamos el número de paginas_llenas visibles*/
 $paginas_visibles = 7 ;
 /*Obtenemos el residuo de la division*/
-$residuo = ($total_de_articulos) % $articulos_por_pagina ;
+$residuo = $total_de_articulos % $articulos_por_pagina ;
 /*Si no tiene residuo, no hacemos nada, si tenemos residuo restamos un numero, hasta que el residuo sea cero*/
+$articulos_en_paquetes = $total_de_articulos ; //Solo hay paquetes completos
 
 if ($residuo == 0) { //No existen páginas adicionales
     $restantes = $residuo ;//No hay restantes
     $pagina_adicional = 0 ;//Por tanto, no hay paginas adicionales
-    $articulos_en_paquetes = $total_de_articulos ; //Solo hay paquetes completos
     $paginas_llenas = $total_de_articulos / $articulos_por_pagina ;
     $art_por_pagina = $total_de_articulos / ($paginas_llenas) ;
     $total_paginas = $paginas_llenas + $pagina_adicional ;
 } else { //Si existen páginas adicionales
-    $i = 0 ;
+    /*print */$i = 0 ;
     do {
-        $residuo = $residuo - 1 ; //Eliminamos articulos hasta que encontremos un numero divisible entre el número de paginas visibles
-        $i = $i + 1 ;//Cuenta los elementos quitados hasta encontrar un número divisible entre el numero de paginas visibles
+        //$residuo = $residuo - 1 ; //Eliminamos articulos hasta que encontremos un numero divisible entre el número de paginas visibles
+        /*print "<br>tota de art: ".*/$articulos_en_paquetes = $articulos_en_paquetes - 1 ;
+        /*print "<br>residuo: ".*/$residuo = ($articulos_en_paquetes) % $articulos_por_pagina ;
+        /*print "<br>contador: ".*/$i = $i + 1 ;//Cuenta los elementos quitados hasta encontrar un número divisible entre el numero de paginas visibles
+        /*print "<br> _______________________________________________________________________________________________________________________________________" ;*/
     } while ($residuo != 0);//Repetir hasta que el residuo sea cero
     $restantes = $i ;//Los elementos quitados son la cantidad de elementos restantes
     $articulos_en_paquetes = $total_de_articulos - $restantes ;
@@ -35,8 +38,9 @@ if ($residuo == 0) { //No existen páginas adicionales
     $art_por_pagina = $articulos_en_paquetes / ($paginas_llenas) ;
     $total_paginas = $paginas_llenas + $pagina_adicional ;//Total de paginas necesarias
 }
+
 /*Determinamos el grupo de elementos en el que nos encontramos y establecemos los que corresponden a esta págna*/
-    $elemento_final = ($art_por_pagina * $pagina_actual) ;
+    $elemento_final = $art_por_pagina * $pagina_actual ;
     $elemento_inicial = $elemento_final - ($art_por_pagina - 1) ;
 /*Agrupamos los articulos restantes, estableciendo el elemento final y el inicial*/
 if ($pagina_actual > $paginas_llenas) {
@@ -53,36 +57,46 @@ if ($total_paginas <= $paginas_visibles) {/*Si la cantidad de paginas necesarias
     $pagina_inicial = 1 ;
     $grupo_pag_llenas = 1 ;
     $x = 0 ;
-}
-
-if ($total_paginas > $paginas_visibles) {
+} else {
     $residuo_pag = $total_paginas % $paginas_visibles ;
     $x = 0 ;
     do {
-        $residuo_pag  = $residuo_pag - 1 ;
-        $x = $x + 1 ;
+        //print "<br>".$paginas_en_paquetes ;
+        /*print "<br>residuo: ".*/$residuo_pag  = $residuo_pag - 1 ;
+        /*print "<br> contador: ".*/$x = $x + 1 ;
+        /*print "<br>_________________________________________________________________________________________________________________" ;*/
     } while ($residuo_pag != 0);
+    /*print "<br>paginas restantes: ".*/$paginas_restantes = $x ;
+    /*print "<br>paginas llenas: ".*/$grupo_pag_llenas = $total_paginas - $paginas_restantes ;
+    
     $llenas_menos_restantes = $total_paginas - $x ;
     $grupo_pag_llenas = $llenas_menos_restantes / $paginas_visibles ;
 
-    if ($grupo_actual > $grupo_pag_llenas) {
-        $pagina_final = $total_paginas - $x ;
+    if ($grupo_actual <= $grupo_pag_llenas) {
+        /*print "<br>/////////paginas llenas" ;*/
+        $pagina_final = $grupo_actual * $paginas_visibles ;
+    } else {
+        $pagina_final = $total_paginas ;
     }
 
-    $pagina_final = $grupo_actual * $paginas_visibles ;
     $pagina_inicial = $pagina_final - 6 ;
-    
-    if ($grupo_actual > $grupo_pag_llenas) {
-        $pagina_final = ($pagina_final - $x) - 1 ;
-    }
 }
 
+if ($grupo_actual == 1) {
+    $y = 0 ;
+    $z = 6 ;
+} else {
+    $y = 1 ;
+    $z = 0 ;
+}
 
 /**Infrmación sobre articulos por página*/
+
+/*
 print "<br>Total de articulos: ".$total_de_articulos ;
 print "<br>Articulos por página: ".$art_por_pagina ;
-print "<br>Árticuloas completas: ".$articulos_en_paquetes ;
-print "<br>Árticuloas Restantes: ".$restantes ;
+print "<br>Articulos completas: ".$articulos_en_paquetes ;
+print "<br>Articulos Restantes: ".$restantes ;
 print "<br>Páginas llenas: ".$paginas_llenas ;
 print "<br>Página adicional: ".$pagina_adicional ;
 print "<br>Total de páginas: ".$total_paginas ;
@@ -91,9 +105,11 @@ print "<br>Elemento inicial: ".$elemento_inicial ;
 print "<br>Elemento final: ".$elemento_final ;
 
 print "<br><br>Grupo de paginas llenas: ".$grupo_pag_llenas ;
+print "<br>Grupo actual: ".$grupo_actual ;
 print "<br>Páginas restantes: ".$x ;
 print "<br>Página final: ".$pagina_final ;
 print "<br>Página inicial: ".$pagina_inicial ;
+*/
 ?>
 
 <div class="container borde">
@@ -169,18 +185,34 @@ print "<br>Página inicial: ".$pagina_inicial ;
         </div>
         <div class="container">
             <div class="row bg-1 justify-content-center">
+                
                 <div class="col-md-8 text-center text-light p-1">
-                    Páginas:
-                </div>
-                <div class="col-md-8 text-center text-light p-1">
-                    <span><</span>
 
-
-                    <?php for ($j=$pagina_inicial; $j < $pagina_final + 1 ; $j++) { ?>
-                        <span class="p-1"> <a href="http://localhost/tienda/<?php print $grupo_actual."/". $j ?>" class="text-light"><?php print $j ?></a> </span>
+                    <?php if ($grupo_actual == 1) { ?>
+                        <span class="text-6"><</span>
+                    <?php } else { ?>
+                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual-$y)."/". ($paginas_visibles - $z) ?>" class="text-light"> < </span>
                     <?php } ?>
 
-                    <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($paginas_visibles + 1) ?>" class="text-light"> > </span>
+                    <?php for ($j=$pagina_inicial; $j < $pagina_final + 1 ; $j++) { 
+                        if ($j == $pagina_actual) {
+                            $link_pagina = "underline_ok" ;
+                        } else {
+                            $link_pagina = "underline_none" ;
+                        }
+                    ?>
+                        
+                        <span class="p-1"> <a href="http://localhost/tienda/<?php print $grupo_actual."/". $j ?>" class="text-light <?php print $link_pagina ?>"><?php print $j ?></a> </span>
+                    <?php } ?>
+                    
+
+
+                    <?php if ($grupo_actual <= $grupo_pag_llenas AND $total_paginas > $paginas_visibles) { ?>
+                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($paginas_visibles + 1) ?>" class="text-light"> > </span>
+                    <?php } else { ?>
+                        <span class="text-6">></span>
+                    <?php } ?><br>
+                    <span class="small text-light"> <?php print "(página: ".$pagina_actual." de ".$total_paginas." )" ?></span>
                 </div>
             </div>
         </div>
