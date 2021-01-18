@@ -8,7 +8,7 @@ $pagina_actual = $divide[2] ;
 /*Obtenemos la canidad de articulos existentes en la BD*/
 $total_de_articulos = $countarticulo ;
 /*Determinar cantidad de articulos visibles por página*/
-$articulos_por_pagina = 1 ;
+$articulos_por_pagina = 6 ;
 /*Determinamos el número de paginas_llenas visibles*/
 $paginas_visibles = 7 ;
 /*Obtenemos el residuo de la division*/
@@ -125,7 +125,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                 <div class="row">
 
                     <div class="col-md-8 p-2">
-                    <div class="container">
+                    <div class="container" id="articulo">
                         <div class="row">
                             <?php for ($l=$elemento_inicial-1 ; $l <= $elemento_final-1 ; $l++) { ?>
                                 <div class="col-md-4 borde borde-danger nopaddin borde border-primary p-1">
@@ -143,7 +143,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                         <a href="tienda/detalles/<?php print $l ?>" class="col-md-12 btn btn-light border border-primary text-primary">Ver</a>
                                         </div>
                                         <div class="p-2">
-                                        <a href="#" class="col-md-12 btn btn-primary">Comprar</a>
+                                        <a href="" class="col-md-12 btn btn-primary boton_comprar" id="boton_comprar">Comprar1</a>
                                         </div>
                                     </div>
                                 </div>
@@ -188,10 +188,21 @@ print "<br>Página inicial: ".$pagina_inicial ;
                 
                 <div class="col-md-8 text-center text-light p-1">
 
+                    <?php 
+                    if ($grupo_actual <= $grupo_pag_llenas) { 
+                        //print "<br>>>>>>>>>Menor" ;
+                        $back = $paginas_visibles ;
+                    } else {
+                        //print "<br>>>>>>>>>Mayor" ;
+                        $back = $pagina_final - $paginas_restantes ;
+                    }
+                    ?>
+
+
                     <?php if ($grupo_actual == 1) { ?>
                         <span class="text-6"><</span>
                     <?php } else { ?>
-                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual-$y)."/". ($paginas_visibles - $z) ?>" class="text-light"> < </span>
+                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual-$y)."/". $back ?>" class="text-light"> < </span>
                     <?php } ?>
 
                     <?php for ($j=$pagina_inicial; $j < $pagina_final + 1 ; $j++) { 
@@ -208,13 +219,15 @@ print "<br>Página inicial: ".$pagina_inicial ;
 
 
                     <?php if ($grupo_actual <= $grupo_pag_llenas AND $total_paginas > $paginas_visibles) { ?>
-                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($paginas_visibles + 1) ?>" class="text-light"> > </span>
+                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($pagina_final + 1) ?>" class="text-light"> > </a></span>
                     <?php } else { ?>
                         <span class="text-6">></span>
                     <?php } ?><br>
-                    <span class="small text-light"> <?php print "(página: ".$pagina_actual." de ".$total_paginas." )" ?></span>
+                    <span class="small text-light"> <?php print "página: ".$pagina_actual." de ".$total_paginas." " ?></span>
                 </div>
             </div>
         </div>
     </div>
 </div><br>
+
+<script src="http://localhost/public/js/buy.js"></script>
