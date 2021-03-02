@@ -1,5 +1,5 @@
 <?php
-    require_once ("./getters/getArticulo.php") ;
+    //require_once ("./getters/getArticulo.php") ;
     $articulocontroller = new ArticuloController () ;
     $articulo ;
     $ar = "" ;

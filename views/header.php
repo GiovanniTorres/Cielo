@@ -22,7 +22,7 @@ $divide = isset ($_GET["r"]) ? explode ("/", $_GET["r"]) : " " ;
 		<div class="container justify_content_center">
 				<a class="navbar-brand text-4 borde-letra">El Cielo</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-control="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<img class="menu-style" src="./imagenes/menu-lineas.svg">
+				<img class="menu-style" src="http://localhost/imagenes/menu-lineas.svg">
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
@@ -51,7 +51,13 @@ $divide = isset ($_GET["r"]) ? explode ("/", $_GET["r"]) : " " ;
 					<li class="nav-item"><div class="col-md-12 borde"></div></li>
 					<li class="nav-item"><div class="col-md-12 borde"></div></li>
 					<li class="nav-item"><div class="col-md-12 borde"></div></li>
-					<li class="nav-item"><a href="http://localhost/blog" class="nav-link text-4 borde-letra1">Cerrar</a></li> 
+					<?php if (!$_SESSION ['i']) { ?>
+					<li class="nav-item"><a href="http://localhost/iniciar_sesion" class="nav-link text-4 borde-letra1">Iniciar Sesión</a></li> 
+					<?php } ?>
+					<?php if ($_SESSION ['i']) { ?>
+					<li class="nav-item"><div class="col-md-12 nav-link text-4 border-letra1 borde" id="usuarioname" data-id="<?php print $_SESSION["clienteDNI"] ; ?>"><?php print $_SESSION["cl_usuario"] ; ?></div></li>
+					<li class="nav-item"><a href="http://localhost/exit" class="nav-link text-4 borde-letra1">Cerrar</a></li>
+					<?php } ?>
 				</ul>			
 			</div>
 		</div>
