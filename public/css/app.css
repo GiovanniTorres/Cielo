@@ -39,6 +39,30 @@
 /*/TextArea/*/    color: #1F668F!important ;
 /*/TextArea/*/}
 
+#disp {
+    overflow: scroll ;
+    max-height: 221px ;
+    height: 221px ;
+}
+
+#disp::-webkit-scrollbar {
+    width: 7px ;
+    height: 8px ;
+}
+
+#disp::-webkit-scrollbar-thumb {
+    background: #e0e8f7 ;
+    border-radius: 3px ;
+}
+
+#disp::-webkit-scrollbar-thumb:hover {
+    background: #c0d2f9 ;
+    box-shadow: 0 0 2px 1px  rgba (0,0,0,0.2);
+}
+
+#disp::-webkit-scrollbar-thumb:active {
+    background: #ccc ;
+}
 
 .trListaCart {
     background-color: #adddea;

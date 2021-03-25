@@ -91,6 +91,6 @@
     </div>
 </div>
 
-<script src="./public/js/validate.js"></script>
+<script src="./public/js/validar_reg_usuario.js"></script>
 
 <?php require_once ("./setters/setCliente.php") ; ?>

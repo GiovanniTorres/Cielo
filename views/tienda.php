@@ -134,7 +134,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                             <?php print $getarticulo [$l]["ar_nombre"] ; ?>
                                         </div> 
                                         <div class="card-body p-2" >
-                                            <?php print "<img src=http://localhost".$getarticulo[$l]['ar_imagen'].".jpg class='imagen'>" ; ?>    
+                                            <?php print "<img src='http://localhost".$getarticulo[$l]['ar_imagen'].".jpg' class='imagen'>" ; ?>    
                                         </div>
                                         <div class="card-body p-1 text-center">
                                             <h5>$200.00 MXN</h5>
@@ -156,34 +156,22 @@ print "<br>Página inicial: ".$pagina_inicial ;
                     </div>
                     </div>
                     <div class="col-md-4 bg-0 p-2">
-                        <div id="carrito" class="border rounded">
-						<table id="lista-carrito">
-							<thead>
-								<tr class="trhead">
-									<th class="trListaCart text-center" width="30%">Id</th>
-									<th class="trListaCart text-center" width="30%">Imagen</th>
-									<th class="trListaCart text-center" width="30%">Nombre</th>
-									<th class="trListaCart text-center" width="30%">Precio</th>
-								</tr>
-							</thead>
-							<!--tbody>
-								<tr>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center"><img src="http://localhost/imagenes/imagen1.jpg" width="35px"></td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
-                                </tr>
+            
+                    <div class="border p-0">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td class="text-center">2</td>
-                                    <td class="text-center"><img src="http://localhost/imagenes/imagen1.jpg" width="35px"></td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-center">1</td>
+                                    <th class='bg-4 p-2 text-center' width="59">ID</th>
+                                    <th class='bg-4 p-2 text-center' width="59">Imagen</th>
+                                    <th class='bg-4 p-2 text-center' width="59">Articulo</th>
+                                    <th class='bg-4 p-2 text-center' width="59">Cantidad</th>
+                                    <th class='bg-4 p-2 text-center' width="59">Precio</th>
                                 </tr>
-							</tbody-->
-						</table>	
-					</div>
-        <div class="border p-1" id="disp"></div>
-        <div class="border p-1" id="disp2"></div>
+                            </thead>
+                        </table>
+                        <div id="disp"></div>
+                    </div>
+                    <div class="border p-1" id="disp2"></div>
 
                     </div>
 
