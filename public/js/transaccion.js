@@ -1,3 +1,11 @@
+function condiciones () {
+  const objeto_articulo = {
+    id_producto: 0
+  }
+  let articulo_seleccionado = objeto_articulo.id_producto
+  obtenerTablaCarrito (articulo_seleccionado)
+}
+
 function AJAXObject () {
   if (window.XMLHttpRequest) {
     return new XMLHttpRequest ()
@@ -6,13 +14,31 @@ function AJAXObject () {
   }
 }
 
-function obtenerTablaCarrito () {
+function obtenerTablaCarrito (articulo_seleccionado) {
   usuario = document.getElementById ("usuarioname").textContent
   ajaxGetTabla = AJAXObject ()
   ajaxGetTabla.onreadystatechange = function () {
     if (ajaxGetTabla.readyState == 4) {
       if (ajaxGetTabla.status == 200) {
         document.getElementById ("disp").innerHTML = ajaxGetTabla.responseText
+        existencia = document.getElementById ("exist").dataset.id
+        //alert (existencia)
+
+        if (existencia == 1) {
+          dni_art = document.getElementById ("dni_art").dataset.id
+          articulo_seleccionado = document.getElementById ("articulo_seleccionado").dataset.id
+          cantidad = document.getElementById ("cantidad").dataset.id
+          //alert ("modifica")
+          setTransaccion (dni_art, articulo_seleccionado, cantidad)
+        } else {
+          dni_art = document.getElementById ("dni_art").dataset.id
+          articulo_seleccionado = document.getElementById ("articulo_seleccionado").dataset.id
+          cantidad = document.getElementById ("cantidad").dataset.id
+          //alert ("inserta")
+          setTransaccion (dni_art, articulo_seleccionado, cantidad)
+        }
+
+
       } else {
       console.log ("El servidor no contestó/nError "+ajaxGetTabla.status+": "+ajaxGetTabla.statusText)
       }
@@ -20,9 +46,11 @@ function obtenerTablaCarrito () {
   }
   ajaxGetTabla.open ("POST", "http://localhost/getters/getCarritoAJAX.php",true)
   ajaxGetTabla.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
-  ajaxGetTabla.send ("nombre_usuario="+usuario+"&&accion=mostrar")
+  ajaxGetTabla.send ("usuario="+usuario+"&&articulo_seleccionado="+articulo_seleccionado)
+  
   const lista_articulos = document.getElementById ("lista_articulos")
   lista_articulos.addEventListener ('click', seleccionarProducto )
+  
 }
 
 function seleccionarProducto (e) {
@@ -31,51 +59,28 @@ function seleccionarProducto (e) {
     const producto = e.target.parentElement.parentElement
     obtenerInformacionProducto (producto)
   }
+  //alert ("Haz seleccionado un articulo")
 }
-  
+
 function obtenerInformacionProducto (producto) {
   const objeto_articulo = {
-    dni: 1,
     id_producto: producto.querySelector ('.id_producto').textContent
   }
-  let objeto_articulo_id = objeto_articulo.id_producto
-  comprobarExistencia (objeto_articulo_id)
+  let articulo_seleccionado = objeto_articulo.id_producto
+
+  obtenerTablaCarrito (articulo_seleccionado)
 }
 
-function comprobarExistencia (objeto_articulo_id) {
-  alert ("comprobar")
-  usuario = document.getElementById ("usuarioname").textContent
-  ajaxGetTabla = AJAXObject ()
-  ajaxGetTabla.onreadystatechange = function () {
-   if (ajaxGetTabla.readyState == 4) {
-     if (ajaxGetTabla.status == 200) {
-      document.getElementById ("disp").innerHTML = ajaxGetTabla.responseText
-      existencia = document.getElementById ("exist").dataset.id
-      if (existencia === '1' ) {
-        //alert ("El articulo ya existe")
-        modificarCantidades (objeto_articulo_id)
-      } else {
-        alert ("insertar")
-        AJAXSetTransaccion (objeto_articulo_id)
-      }
-     } else {
-     console.log ("El servidor no contestó/nError "+ajaxGetTabla.status+": "+ajaxGetTabla.statusText)
-     }
-   }
- }
- ajaxGetTabla.open ("POST", "http://localhost/getters/getCarritoAJAX.php",true)
- ajaxGetTabla.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
- ajaxGetTabla.send ("nombre_usuario="+usuario+"&&accion=verificar&&objeto_seleccionado="+objeto_articulo_id)
-}
-
-function modificarCantidades (objeto_articulo_id) {
-  alert ("Modificar cantidades we")
-  usuasrionombre = document.getElementById ("usuarioname").dataset.id
+function setTransaccion (dni_art, articulo_seleccionado, cantidad) {
+  //alert ("DniCarrito: "+dni_art+", ArticuloSeleccionado: "+articulo_seleccionado+", Cantidad: "+cantidad)
+  
+  usuarionombre = document.getElementById ("usuarioname").dataset.id
   ajaxSetTransaccion = AJAXObject ()
   ajaxSetTransaccion.onreadystatechange = function () {
     if (ajaxSetTransaccion.readyState == 4) {
       if (ajaxSetTransaccion.status == 200) {
         document.getElementById ("disp").innerHTML = ajaxSetTransaccion.responseText
+        condiciones ()
       } else {
         console.log ("El servidor no contestó/nError "+ajaxSetTransaccion.status+": "+ajaxSetTransaccion.statusText)
       }
@@ -83,27 +88,19 @@ function modificarCantidades (objeto_articulo_id) {
   }
   ajaxSetTransaccion.open ("POST", "http://localhost/setters/setTransaccionAjax.php",true)
   ajaxSetTransaccion.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
-  ajaxSetTransaccion.send ("setAccion=modificar&&objeto_articulo="+objeto_articulo_id+"&& usuarionombre="+usuasrionombre)
-}
+  ajaxSetTransaccion.send ("dni_art="+dni_art+"&&articulo_seleccionado="+articulo_seleccionado+"&&usuarionombre="+usuarionombre+"&&cantidad="+cantidad)
 
-function AJAXSetTransaccion (objeto_articulo_id) {
-  alert ("enviar")
-  usuasrionombre = document.getElementById ("usuarioname").dataset.id
-  ajaxSetTransaccion = AJAXObject ()
-  ajaxSetTransaccion.onreadystatechange = function () {
-    if (ajaxSetTransaccion.readyState == 4) {
-      if (ajaxSetTransaccion.status == 200) {
-        existencia = document.getElementById ("exist").dataset.id
-        document.getElementById ("disp").innerHTML = ajaxSetTransaccion.responseText
-      } else {
-      console.log ("El servidor no contestó/nError "+ajaxSetTransaccion.status+": "+ajaxSetTransaccion.statusText)
-      }
-    }
-  }
-  ajaxSetTransaccion.open ("POST", "http://localhost/setters/setTransaccionAjax.php",true)
-  ajaxSetTransaccion.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
-  ajaxSetTransaccion.send ("setAccion=insertar&&objeto_articulo="+objeto_articulo_id+"&& usuarionombre="+usuasrionombre)
+
+  comprobarExistencia (articulo_seleccionado)
   obtenerTablaCarrito ()
 }
 
-window.addEventListener ("load", obtenerTablaCarrito)
+
+
+
+
+
+
+
+
+window.addEventListener ("load", condiciones)

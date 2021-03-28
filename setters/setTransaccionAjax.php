@@ -1,33 +1,25 @@
 <?php
 require_once ("../controllers/TransaccionController.php") ;
-$setAccion = $_POST['setAccion'] ;
-$objeto_articulo = $_POST['objeto_articulo'] ;
-if ($setAccion == "modificar") {
-    print $objeto_articulo ;
-} elseif ($setAccion == "insertar") {
-    print "insertar" ;
-    $objeto_articulo = $_POST['objeto_articulo'] ;
-    $usuarionombre = $_POST['usuarionombre'] ;
+/*print*/ $dni_art = $_POST['dni_art'] ;
+/*print*/ $articulo_seleccionado = $_POST['articulo_seleccionado'] ;
+/*print*/ $usuarionombre = $_POST['usuarionombre'] ;
+/*print*/ $cantidad = $_POST['cantidad'] ;
 
-    $carritoDNI = NULL ;
-    $articuloDNI = $objeto_articulo ;
-    $clienteDNI = $usuarionombre ;
-    $ventaDNI = "1" ;
-    $ca_cantidad = "1" ;
-    $ca_precio_cant = "1" ;
+$carritoDNI = $dni_art ;
+$articuloDNI = $articulo_seleccionado ;
+$clienteDNI = $usuarionombre ;
+$ventaDNI = "1" ;
+$ca_cantidad = $cantidad + 1 ;
+$ca_precio_cant = "1" ;
 
-    $transaccion_data = array (
-        "carritoDNI" => $carritoDNI ,
-        "articuloDNI" => $articuloDNI ,
-        "clienteDNI" => $clienteDNI ,
-        "ventaDNI" => $ventaDNI ,
-        "ca_cantidad" => $ca_cantidad ,
-        "ca_precio_cant" => $ca_precio_cant
-    );
-    $transaccioncontroller = new TransaccionController () ;
-    $settransaccion = $transaccioncontroller->setTransaccion ($transaccion_data) ;
-}
+$transaccion_data = array (
+    "carritoDNI" => $carritoDNI ,
+    "articuloDNI" => $articuloDNI ,
+    "clienteDNI" => $clienteDNI ,
+    "ventaDNI" => $ventaDNI ,
+    "ca_cantidad" => $ca_cantidad ,
+    "ca_precio_cant" => $ca_precio_cant
+);
 
-/*
-
-*/
+$transaccioncontroller = new TransaccionController () ;
+$settransaccion = $transaccioncontroller->setTransaccion ($transaccion_data) ;

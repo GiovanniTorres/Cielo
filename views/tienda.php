@@ -157,19 +157,23 @@ print "<br>Página inicial: ".$pagina_inicial ;
                     </div>
                     <div class="col-md-4 bg-0 p-2">
             
-                    <div class="border p-0">
-                        <table>
+                    <div class="border p-0" id="tdisp">
+                        <table width="100%" >
                             <thead>
                                 <tr>
-                                    <th class='bg-4 p-2 text-center' width="59">ID</th>
-                                    <th class='bg-4 p-2 text-center' width="59">Imagen</th>
-                                    <th class='bg-4 p-2 text-center' width="59">Articulo</th>
-                                    <th class='bg-4 p-2 text-center' width="59">Cantidad</th>
-                                    <th class='bg-4 p-2 text-center' width="59">Precio</th>
+                                    <th width="1%" class="bg-4 first_tr xx_small text-center">#</th>
+                                    <th width="2%" class="bg-4 xx_small text-center">Imagen</th>
+                                    <!--width="1%" th class="bg-4 xx_small text-center">Articulo</th-->
+                                    <th width="1%" class="bg-4 xx_small text-center">Cant.</th>
+                                    <th width="1%" class="bg-4 xx_small text-center">Precio</th>
+                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
+                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
+                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
                                 </tr>
                             </thead>
+                        <!--/table-->
+                            <tbody id="disp"></tbody>
                         </table>
-                        <div id="disp"></div>
                     </div>
                     <div class="border p-1" id="disp2"></div>
 

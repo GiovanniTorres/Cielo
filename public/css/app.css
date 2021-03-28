@@ -39,39 +39,35 @@
 /*/TextArea/*/    color: #1F668F!important ;
 /*/TextArea/*/}
 
-#disp {
-    overflow: scroll ;
+table {
+    width: 100% ;
+}
+
+
+
+#tdisp {
+    overflow: overlay ;
     max-height: 221px ;
     height: 221px ;
 }
 
-#disp::-webkit-scrollbar {
+#tdisp::-webkit-scrollbar {
     width: 7px ;
     height: 8px ;
 }
 
-#disp::-webkit-scrollbar-thumb {
-    background: #e0e8f7 ;
-    border-radius: 3px ;
+#tdisp::-webkit-scrollbar-thumb {
+    background: #02708b ;
+    border-radius: 19px ;
 }
 
-#disp::-webkit-scrollbar-thumb:hover {
+#tdisp::-webkit-scrollbar-thumb:hover {
     background: #c0d2f9 ;
     box-shadow: 0 0 2px 1px  rgba (0,0,0,0.2);
 }
 
-#disp::-webkit-scrollbar-thumb:active {
+#tdisp::-webkit-scrollbar-thumb:active {
     background: #ccc ;
-}
-
-.trListaCart {
-    background-color: #adddea;
-    /*border: 2px #fff solid;*/
-    padding: 4px 19px 4px 19px;
-}
-
-a {
-    
 }
 
 .card-header {
@@ -162,16 +158,20 @@ ADDDEA
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #1a3c5f;
-    border-radius: 41px;
+    background-color: #adddea;
+    border-radius: 0px;
 } 
 
 ::-webkit-scrollbar-thumb {
     background-color: rgb(48 151 202);
-    border-radius: 5px;
+    border-radius: 0px;
 }
 
 .imagen {
     width: 100% ;
     height: 150px ;
+}
+
+.xx_small {
+    font-size: xx-small ;
 }
