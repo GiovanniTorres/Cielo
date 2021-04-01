@@ -125,78 +125,127 @@ print "<br>Página inicial: ".$pagina_inicial ;
                 <div class="row">
 
                     <div class="col-md-8 p-2">
-                    <div class="container" id="lista_articulos">
-                        <div class="row">
-                            <?php for ($l=$elemento_inicial-1 ; $l <= $elemento_final-1 ; $l++) { ?>
-                                <div class="col-md-4 borde borde-danger nopaddin borde border-primary p-1">
-                                    <div class="border-4 rounded p-0">
-                                        <div class="card-header text-center bg-4 small nombre_producto" dni="1">
-                                            <?php print $getarticulo [$l]["ar_nombre"] ; ?>
-                                        </div> 
-                                        <div class="card-body p-2" >
-                                            <?php print "<img src='http://localhost".$getarticulo[$l]['ar_imagen'].".jpg' class='imagen'>" ; ?>    
-                                        </div>
-                                        <div class="card-body p-1 text-center">
-                                            <h5>$200.00 MXN</h5>
-                                        </div>
-                                        <div class="card-body text-center ">
-                                            <span>Id: 000</span>
-                                            <span class="id_producto"><?php print $getarticulo [$l]["articuloDNI"] ; ?></span> 
-                                        </div>
-                                        <div class="p-2">
-                                            <a href="tienda/detalles/<?php print $l ?>" class="col-md-12 btn btn-light border border-primary text-primary">Ver</a>
-                                        </div>
-                                        <div class="p-2">
-                                        <a href="" class="col-md-12 btn btn-primary comprar">Comprar<?php //print $l ?></a>
+                        <div class="container" id="lista_articulos">
+                            <div class="row">
+                                <?php for ($l=$elemento_inicial-1 ; $l <= $elemento_final-1 ; $l++) { ?>
+                                    <div class="col-md-4 borde borde-danger nopaddin borde border-primary p-1">
+                                        <div class="border-4 rounded p-0">
+                                            <div class="card-header text-center bg-4 small nombre_producto" dni="1">
+                                                <?php print $getarticulo [$l]["ar_nombre"] ; ?>
+                                            </div> 
+                                            <div class="card-body p-0" >
+                                                <?php print "<img src='http://localhost".$getarticulo[$l]['ar_imagen'].".jpg' class='imagen'>" ; ?>    
+                                            </div>
+                                            <div class="card-body p-1 text-center precio_ar" data-id="<?php print $getarticulo [$l]['ar_precio'] ; ?>">
+                                                <h5>$ <?php print $getarticulo [$l]["ar_precio"] ; ?>
+                                            </div>
+                                                <span class="id_producto" data-id="<?php print $getarticulo [$l]['articuloDNI'] ; ?>"></span> 
+                                            <div class="p-2">
+                                                <a href="tienda/detalles/<?php print $l ?>" class="col-md-12 btn btn-light border border-primary text-primary">Ver</a>
+                                            </div>
+                                            <div class="p-2">
+                                            <a href="" class="col-md-12 btn btn-primary comprar">Comprar<?php //print $l ?></a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php } ?>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
-                    </div>
+
                     <div class="col-md-4 bg-0 p-2">
-            
-                    <div class="border p-0" id="tdisp">
-                        <table width="100%" >
-                            <thead>
-                                <tr>
-                                    <th width="1%" class="bg-4 first_tr xx_small text-center">#</th>
-                                    <th width="2%" class="bg-4 xx_small text-center">Imagen</th>
-                                    <!--width="1%" th class="bg-4 xx_small text-center">Articulo</th-->
-                                    <th width="1%" class="bg-4 xx_small text-center">Cant.</th>
-                                    <th width="1%" class="bg-4 xx_small text-center">Precio</th>
-                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
-                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
-                                    <th width="1%" class="bg-4 xx_small text-center">&nbsp&nbsp</th>
-                                </tr>
-                            </thead>
-                        <!--/table-->
-                            <tbody id="disp"></tbody>
-                        </table>
-                    </div>
-                    <div class="border p-1" id="disp2"></div>
+                        <div class="border-4 p-0" id="tdisp">
+                            <table width="100%" >
+                                <thead>
+                                    <tr>
+                                        <th width="1%" class="bg-4 first_tr xx_small text-center py-2">#</th>
+                                        <th width="1%" class="bg-4 xx_small text-center py-2">Imagen</th>
+                                        <th width="1%" th class="bg-4 xx_small text-center py-2">Articulo</th>
+                                        <th width="1%" class="bg-4 xx_small text-center py-2">Cant.</th>
+                                        <th width="1%" class="bg-4 xx_small text-center py-2">Precio</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="disp"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="border-4 p-0" id="disp2">
+                            <div class="container">
+                                <div class="row border">
+                                    <div class="col-md-4 text-center p-0 borde">
+                                        <span class="xx_small">Sub-Total: </span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-1 text-center p-0 borde">
+                                        <span class="xx_small">$</span>
+                                    </div>
+                                    <div class="col-md-3 text-center p-0 borde">
+                                        <span class="xx_small">Horario</span>
+                                    </div>
+                                    
+                                    <div class="col-md-4 text-center p-0 borde">
+                                        <span class="xx_small">I.V.A.: </span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-1 text-center p-0 borde">
+                                        <span class="xx_small">$</span>
+                                    </div>
+                                    <div class="col-md-3 text-center p-0 borde">
+                                        <span class="xx_small">Horario</span>
+                                    </div>
+
+                                    <div class="col-md-4 text-center p-0 borde">
+                                        <span class="xx_small">Total: </span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-2 text-center p-0 borde">
+                                        <span class="xx_small"></span>
+                                    </div>
+                                    <div class="col-md-1 text-center p-0 borde">
+                                        <span class="xx_small">$</span>
+                                    </div>
+                                    <div class="col-md-3 text-center p-0 borde">
+                                        <span class="xx_small">Horario</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container  col-md-12">
+                            <div class="row">
+                                <div class="col-md-12 text-light p-0 borde text-center">
+                                    <a href="" class="col-md-12 xx_small text-light btn btn-1">Siguiente</a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
-
                 </div>
             </div>
         </div>
 
-
         <div class="container">
             <div class="row bg-1 justify-content-center">
-                
                 <div class="col-md-8 text-center text-light p-1">
-
                     <?php 
-                    if ($grupo_actual <= $grupo_pag_llenas) { 
-                        //print "<br>>>>>>>>>Menor" ;
-                        $back = $paginas_visibles ;
-                    } else {
-                        //print "<br>>>>>>>>>Mayor" ;
-                        $back = $pagina_final - $paginas_restantes ;
-                    }
+                        if ($grupo_actual <= $grupo_pag_llenas) { 
+                            //print "<br>>>>>>>>>Menor" ;
+                            $back = $paginas_visibles ;
+                        } else {
+                            //print "<br>>>>>>>>>Mayor" ;
+                            $back = $pagina_final - $paginas_restantes ;
+                        }
                     ?>
 
 
@@ -207,28 +256,29 @@ print "<br>Página inicial: ".$pagina_inicial ;
                     <?php } ?>
 
                     <?php for ($j=$pagina_inicial; $j < $pagina_final + 1 ; $j++) { 
-                        if ($j == $pagina_actual) {
-                            $link_pagina = "underline_ok" ;
-                        } else {
-                            $link_pagina = "underline_none" ;
-                        }
+                            if ($j == $pagina_actual) {
+                                $link_pagina = "underline_ok" ;
+                            } else {
+                                $link_pagina = "underline_none" ;
+                            }
                     ?>
                         
-                        <span class="p-1"> <a href="http://localhost/tienda/<?php print $grupo_actual."/". $j ?>" class="text-light <?php print $link_pagina ?>"><?php print $j ?></a> </span>
+                    <span class="p-1"> <a href="http://localhost/tienda/<?php print $grupo_actual."/". $j ?>" class="text-light <?php print $link_pagina ?>"><?php print $j ?></a> </span>
                     <?php } ?>
-                    
+                
 
 
-                    <?php if ($grupo_actual <= $grupo_pag_llenas AND $total_paginas > $paginas_visibles) { ?>
-                        <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($pagina_final + 1) ?>" class="text-light"> > </a></span>
-                    <?php } else { ?>
-                        <span class="text-6">></span>
-                    <?php } ?><br>
+                <?php if ($grupo_actual <= $grupo_pag_llenas AND $total_paginas > $paginas_visibles) { ?>
+                    <span> <a href="http://localhost/tienda/<?php print ($grupo_actual+1)."/". ($pagina_final + 1) ?>" class="text-light"> > </a></span>
+                <?php } else { ?>
+                    <span class="text-6">></span>
+                <?php } ?><br>
                     <span class="small text-light"> <?php print "página: ".$pagina_actual." de ".$total_paginas." " ?></span>
                 </div>
             </div>
         </div>
     </div>
 </div><br>
+
 
 <script src="http://localhost/public/js/transaccion.js"></script>

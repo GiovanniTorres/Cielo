@@ -55,7 +55,7 @@ CREATE TABLE carrito (
     articuloDNI INT NOT NULL ,
     clienteDNI INT NOT NULL,
     ventaDNI INT NOT NULL ,
-    ca_cantidad INT ,
+    ca_cantidad DECIMAL (7,2) ,
     ca_precio_cant DECIMAL (7,2) ,
     PRIMARY KEY (carritoDNI) ,
     FOREIGN KEY (articuloDNI) REFERENCES articulos (articuloDNI) ON UPDATE CASCADE ON DELETE CASCADE ,
@@ -66,34 +66,34 @@ INSERT INTO administradores (adminDNI, ad_nombre, ad_apellidos, ad_edad, ad_rfc,
 (NULL, 'Giovanni', 'Torres Miranda', 33, 'TOMJ8708018F8', 'giovannitorres@gmail.com', '1111111111', 'calle 1, colonia, municipio, estado', '52040') ,
 (NULL, 'Guadalupe', 'Caballero Juárez', 25, 'CAJG9412118F8', 'guadalupecaballero@gmail.com', '2222222222', 'calle 2, colonia, municipio, estado', '52040') ;
 INSERT INTO articulos (articuloDNI, ar_imagen, ar_nombre, ar_descripcion, ar_precio) VALUES 
-(NULL, './imagenes/imagen1', 'Chessecake Zarzamora', 'Rico Chessecake d Zarzamora', 250) ,
-(NULL, './imagenes/imagen2', 'Pastel Selva Negra', 'Rico Pastel de Selva Negra', 250) ,
-(NULL, './imagenes/imagen3', 'Gelatina Vainilla', 'Rica Gelatina de Vainilla', 250) ,
-(NULL, './imagenes/imagen4', 'CupCake Chocolate', 'Rico CupCake de Chocolate', 250) ,
-(NULL, './imagenes/imagen5', 'Chessecake Chocolate', 'Rico Chessecake de Chocolate', 250) ,
-(NULL, './imagenes/imagen6', 'Pastel Mil Hojas', 'Rico Pastel de Mil Hojas', 250) ,
-(NULL, './imagenes/imagen7', 'Gelatina Chocolate', 'Rica Gelatina de Chocolate', 250) ,
-(NULL, './imagenes/imagen8', 'CupCake Canela', 'Rico CupCake de Canela', 250) ,
-(NULL, './imagenes/imagen9', 'Chessecake Mango', 'Rico Chessecake de Mango', 250) ,
-(NULL, './imagenes/imagen10', 'Pastel de tres Leches', 'Rico Pastel de tres Leches', 250) ,
-(NULL, './imagenes/imagen11', 'Gelatina Mosaico', 'Rica Gelatina de Mosaico', 250) ,
-(NULL, './imagenes/imagen12', 'CupCake Vainilla', 'Rico CupCake de Vainilla', 250) ,
-(NULL, './imagenes/imagen13', 'Chessecake Fresa', 'Rico Chessecake de Fresa', 250) ,
-(NULL, './imagenes/imagen14', 'Pastel Chocolate', 'Rico Pastel de Chocolate', 250) ,
-(NULL, './imagenes/imagen15', 'Gelatina Fresa', 'Rica Gelatina de Fresa', 250) ,
-(NULL, './imagenes/imagen16', 'CupCake Limón', 'Rico CupCake de Limón', 250) ,
-(NULL, './imagenes/imagen17', 'Chessecake Oreo', 'Rico Chessecake de Oreo', 250) ,
-(NULL, './imagenes/imagen18', 'Gelatina Frutas', 'Rica Gelatina de Frutas', 250) ,
-(NULL, './imagenes/imagen19', 'CupCake Moka', 'Rico CupCake Moka', 250) ;
+(NULL, './imagenes/imagen1', 'Chessecake Zarzamora', 'Rico Chessecake d Zarzamora', 250.00) ,
+(NULL, './imagenes/imagen2', 'Pastel Selva Negra', 'Rico Pastel de Selva Negra', 251.00) ,
+(NULL, './imagenes/imagen3', 'Gelatina Vainilla', 'Rica Gelatina de Vainilla', 252.00) ,
+(NULL, './imagenes/imagen4', 'CupCake Chocolate', 'Rico CupCake de Chocolate', 253.00) ,
+(NULL, './imagenes/imagen5', 'Chessecake Chocolate', 'Rico Chessecake de Chocolate', 254.00) ,
+(NULL, './imagenes/imagen6', 'Pastel Mil Hojas', 'Rico Pastel de Mil Hojas', 255.00) ,
+(NULL, './imagenes/imagen7', 'Gelatina Chocolate', 'Rica Gelatina de Chocolate', 256.00) ,
+(NULL, './imagenes/imagen8', 'CupCake Canela', 'Rico CupCake de Canela', 257.00) ,
+(NULL, './imagenes/imagen9', 'Chessecake Mango', 'Rico Chessecake de Mango', 258.00) ,
+(NULL, './imagenes/imagen10', 'Pastel de tres Leches', 'Rico Pastel de tres Leches', 259.00) ,
+(NULL, './imagenes/imagen11', 'Gelatina Mosaico', 'Rica Gelatina de Mosaico', 260.00) ,
+(NULL, './imagenes/imagen12', 'CupCake Vainilla', 'Rico CupCake de Vainilla', 261.00) ,
+(NULL, './imagenes/imagen13', 'Chessecake Fresa', 'Rico Chessecake de Fresa', 262.00) ,
+(NULL, './imagenes/imagen14', 'Pastel Chocolate', 'Rico Pastel de Chocolate', 263.00) ,
+(NULL, './imagenes/imagen15', 'Gelatina Fresa', 'Rica Gelatina de Fresa', 264.00) ,
+(NULL, './imagenes/imagen16', 'CupCake Limón', 'Rico CupCake de Limón', 265.00) ,
+(NULL, './imagenes/imagen17', 'Chessecake Oreo', 'Rico Chessecake de Oreo', 266.00) ,
+(NULL, './imagenes/imagen18', 'Gelatina Frutas', 'Rica Gelatina de Frutas', 267.00) ,
+(NULL, './imagenes/imagen19', 'CupCake Moka', 'Rico CupCake Moka', 268.00) ;
 INSERT INTO clientes (clienteDNI, adminDNI, cl_nombre, cl_apellidos, cl_usuario, cl_password, cl_edad, cl_rfc, cl_telefono, cl_mail, cl_direccion, cl_cp, cl_sello_digital, cl_razon_social, cl_mensaje) VALUES
 (NULL, 2, 'Daniela', 'Torres Caballero', 'Dani', 'root', 7, 'TOCD1305278D8', '3333333333', 'danielatorresc@gmail.com', 'calle 11, colonia, municipio, estado, pais', '52040', 'mvcxdfyujmvfr567uyr456yhbvcde45tgvcde4tgvfr6yhgyuhgtyuhyuhgyhbgtyhyghuyghuyhuyhju7hu76ty654r4er54edrewdredfgtrfghuyhji8io98yhji876wqazxcvbhji8765re', 'Daniela Torres Caballero', 'gtdhhggtyutfh nhv nhv  njhgbhg nbv  nb  mjuygb jhgc njgv njhytdxcvbgresx gfredxc bgredxc bgfv gdc nhujbnkkn nmkokmnkkn nkn cfv vfdcv vdscvcsscvdfv ggb byb hujn kn mm mlm mlmmplmplmkoknjkjnnjij bhjjhb bhhb hv vgv cfc cfrccc cdccdwsdccsqscvcdefvvffv gg bh nn njjn  njn jn knkkkokmkmkokkjn jijhuhvccffc cf cdwdcwdc cdwdc  cdwdv vfrrgb hujn  mkoplm  ,lujmnhg vdedc cxswdc frfv bhyujn okm kjhy.9876rfvh865rfvbj8tfvnj8.') ,
 (NULL, 1, 'Clara', 'Miranda Gonzaga', 'Clarita', 'root', 51, 'MIGC6704778D8', '4444444444', 'claramirandag@gmail.com', 'calle 12, colonia, municipio, estado, pais', '52040', 'mvcxdfyujmvfr567uyr456yhbvcde45tgvcde4tgvfr6yhgyuhgtyuhyuhgyhbgtyhyghuyghuyhuyhju7hu76ty654r4er54edrewdredfgtrfghuyhji8io98yhji876wqazxcvbhji8765re', 'Daniela Torres Caballero', 'gtdhhggtyutfh nhv nhv  njhgbhg nbv  nb  mjuygb jhgc njgv njhytdxcvbgresx gfredxc bgredxc bgfv gdc nhujbnkkn nmkokmnkkn nkn cfv vfdcv vdscvcsscvdfv ggb byb hujn kn mm mlm mlmmplmplmkoknjkjnnjij bhjjhb bhhb hv vgv cfc cfrccc cdccdwsdccsqscvcdefvvffv gg bh nn njjn  njn jn knkkkokmkmkokkjn jijhuhvccffc cf cdwdcwdc cdwdc  cdwdv vfrrgb hujn  mkoplm  ,lujmnhg vdedc cxswdc frfv bhyujn okm kjhy.9876rfvh865rfvbj8tfvnj8.') ,
 (NULL, 1, 'Ricardo', 'Torres Caballero', 'Chichald', 'root', 53, 'MIGC6704778D8', '4444444444', 'ricardotorresf@gmail.com', 'calle 12, colonia, municipio, estado, pais', '52040', 'mvcxdfyujmvfr567uyr456yhbvcde45tgvcde4tgvfr6yhgyuhgtyuhyuhgyhbgtyhyghuyghuyhuyhju7hu76ty654r4er54edrewdredfgtrfghuyhji8io98yhji876wqazxcvbhji8765re', 'Daniela Torres Caballero', 'gtdhhggtyutfh nhv nhv  njhgbhg nbv  nb  mjuygb jhgc njgv njhytdxcvbgresx gfredxc bgredxc bgfv gdc nhujbnkkn nmkokmnkkn nkn cfv vfdcv vdscvcsscvdfv ggb byb hujn kn mm mlm mlmmplmplmkoknjkjnnjij bhjjhb bhhb hv vgv cfc cfrccc cdccdwsdccsqscvcdefvvffv gg bh nn njjn  njn jn knkkkokmkmkokkjn jijhuhvccffc cf cdwdcwdc cdwdc  cdwdv vfrrgb hujn  mkoplm  ,lujmnhg vdedc cxswdc frfv bhyujn okm kjhy.9876rfvh865rfvbj8tfvnj8.') ;
 INSERT INTO ventas (ventaDNI, clienteDNI, adminDNI, ve_fecha_hora, ve_total, ve_statpaq) VALUES 
-(NULL, 3, 1, '2020-11-17 00:00:01', 500, 'Pendiente') ,
-(NULL, 1, 1, '2020-11-18 00:00:01', 750, 'Enviado') ;
+(NULL, 3, 1, '2020-11-17 00:00:01', 500.00, 'Pendiente') ,
+(NULL, 1, 1, '2020-11-18 00:00:01', 750.00, 'Enviado') ;
 INSERT INTO carrito (carritoDNI, articuloDNI, clienteDNI, ventaDNI, ca_cantidad, ca_precio_cant) VALUES 
-(NULL, 3, 1, 1, 1, 500) ,
-(NULL, 7, 1, 1, 1, 250) ;
+(NULL, 3, 1, 1, 1.00, 252.00) ,
+(NULL, 7, 1, 1, 1.00, 256.00) ;
 USE cielo ;
 DROP DATABASE cielo ;
