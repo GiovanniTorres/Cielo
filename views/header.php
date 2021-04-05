@@ -55,7 +55,7 @@ $divide = isset ($_GET["r"]) ? explode ("/", $_GET["r"]) : " " ;
 					<li class="nav-item"><a href="http://localhost/iniciar_sesion" class="nav-link text-4 borde-letra1">Iniciar Sesión</a></li> 
 					<?php } ?>
 					<?php if ($_SESSION ['i']) { ?>
-					<li class="nav-item"><div class="col-md-12 nav-link text-4 border-letra1 borde" id="usuarioname" data-id="<?php print $_SESSION["clienteDNI"] ; ?>"><?php print $_SESSION["cl_usuario"] ; ?></div></li>
+					<li class="nav-item"><div class="col-md-12 nav-link text-4 border-letra1 borde" id="usuario" data-id="<?php print $_SESSION["clienteDNI"] ; ?>"><?php print $_SESSION["cl_usuario"] ; ?></div></li>
 					<li class="nav-item"><a href="http://localhost/exit" class="nav-link text-4 borde-letra1">Cerrar</a></li>
 					<?php } ?>
 				</ul>			

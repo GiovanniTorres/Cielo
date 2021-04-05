@@ -93,7 +93,7 @@ INSERT INTO ventas (ventaDNI, clienteDNI, adminDNI, ve_fecha_hora, ve_total, ve_
 (NULL, 3, 1, '2020-11-17 00:00:01', 500.00, 'Pendiente') ,
 (NULL, 1, 1, '2020-11-18 00:00:01', 750.00, 'Enviado') ;
 INSERT INTO carrito (carritoDNI, articuloDNI, clienteDNI, ventaDNI, ca_cantidad, ca_precio_cant) VALUES 
-(NULL, 3, 1, 1, 1.00, 252.00) ,
-(NULL, 7, 1, 1, 1.00, 256.00) ;
+(1, 3, 1, 1, 1.00, 252.00) ,
+(2, 7, 2, 1, 1.00, 256.00) ;
 USE cielo ;
 DROP DATABASE cielo ;

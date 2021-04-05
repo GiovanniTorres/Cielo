@@ -1,15 +1,21 @@
 <?php
 require_once ("../controllers/TransaccionController.php") ;
 
-/*print*/ $idcarrito = $_POST['idcarrito'] ;
-/*print*/ $articulo_seleccionado = $_POST['articulo_seleccionado'] ;
-/*print*/ $usuarionombre = $_POST['usuarionombre'] ;
-/*print "<br>Cantidad:".  */$cantidad = $_POST['cantidad'] ;
-/*print "<br>precio:".    */$precio = $_POST['precio'] ;
+$usuario = $_POST['usuario'] ;
+$id_carrito = $_POST['id_carrito'] ;
+$id_articulo = $_POST['id_articulo'] ;
+$cantidad = $_POST['cantidad'] ;
+$precio = $_POST['precio'] ;
 
-$carritoDNI = $idcarrito ;
-$articuloDNI = $articulo_seleccionado ;
-$clienteDNI = $usuarionombre ;
+print "usuario: ".$usuario ;
+print "<br>id_carrito: ".$id_carrito ;
+print "<br>id_articulo: ".$id_articulo ;
+print "<br>cantidad: ".$cantidad ;
+print "<br>precio: ".$precio ;
+
+$carritoDNI = $id_carrito ;
+$articuloDNI = $id_articulo ;
+$clienteDNI = $usuario ;
 $ventaDNI = "1" ;
 $ca_cantidad = $cantidad ;
 $ca_precio_cant = $precio ;
