@@ -13,12 +13,12 @@ $carritocontroller = new CarritoControllerAJAX () ;
 $getCarrito = $carritocontroller->carritoGet ($carrito = $car) ;
 $countcarrito = count ($getCarrito) ;
 
-$existencia = "" ;
+$analizado = "" ;
 $idcarrito = "" ;
 
 for ($i=0; $i < $countcarrito; $i++) { 
     if ($getCarrito [$i]["articuloDNI"] == $articulo_seleccionado) {
-        $existencia = 1 ;
+        $analizado = 1 ;
         $idcarrito = $i+1;
     }
     $numeracion = $i + 1 ;
@@ -41,7 +41,7 @@ for ($i=0; $i < $countcarrito; $i++) {
 }
 
 if ($accion == "Procesar") {
-    if ($existencia == 1) {
+    if ($analizado == 1) {
         $cantidad = $cantidad + 1 ;
         $precio = $precio * $cantidad ;
         //print "Existe" ;
@@ -50,7 +50,7 @@ if ($accion == "Procesar") {
         print "<br>Dni Art: ".      $articulo_seleccionado ;
         print "<br>Cantidad: ".     $cantidad ;
         print "<br>Precio: ".       $precio ;
-    } elseif ($existencia == 0) {
+    } elseif ($analizado == 0) {
         $idcarrito = null ;
         $cantidad = 1 ;
         //$precio = $precio * $cantidad ;

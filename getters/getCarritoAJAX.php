@@ -1,25 +1,28 @@
 <?php
-require_once ("../controllers/CarritoControllerAJAX.php") ;
+require_once ($_SERVER['DOCUMENT_ROOT']."/controllers/CarritoController.php") ;
 
-print $usuario =  $_POST['usuario'] ;
-print $id_articulo = $_POST['id_articulo'] ;
-print $precio = $_POST['precio'] ;
-$id_carrito = "" ;
+$idVentas = $_POST['idVentas'] ;
+$idArticulo = $_POST['idArticulo'] ;
+$precio = $_POST['precio'] ;
+$idCarrito = "" ;
 $cantidad = "" ;
 $total = 0 ;
 
 $carrito = "" ;
 $car = "" ;
-$carritocontroller = new CarritoControllerAJAX () ;
-$getCarrito = $carritocontroller->carritoGet ($carrito = $car) ;
-$countcarrito = count ($getCarrito) ;
-$numeracion = "" ;
-$existencia = "" ;
-$cantidad = "" ;
 
-if ($id_articulo == 0) {
+$carritocontroller = new CarritoController () ;
+$getCarrito = $carritocontroller->carritoGetAjax ($carrito = $car) ;
+$countcarrito = count ($getCarrito) ;
+
+$numeracion = "" ;
+$analizado = "" ;
+$cantidad = "" ;
+$status = "" ;
+
+if ($idArticulo == 0) {
     for ($i=0; $i < $countcarrito; $i++) { 
-        if ($getCarrito [$i]["clienteDNI"] == $usuario) {
+        if ($getCarrito [$i]["ventaDNI"] == $idVentas && $getCarrito [$i]["ve_statpaq"] == "Pendiente") {
             print "
             <tr>
             <td width='1%' class='pt-2 text-center xx_small'>".($i+1)."</td>
@@ -30,43 +33,35 @@ if ($id_articulo == 0) {
             </tr>
             ";
             $total = $total + $getCarrito [$i]["ca_precio_cant"] ;
+            $status = $getCarrito [$i]["ve_statpaq"] ;
+            
         }
     }
 } else {
-        /*print "<br><br>Usuario: ".*/  $usuario = $usuario ;
-        /*print "<br>id_carrito: ". */  $id_carrito = null ;
-        /*print "<br>id_articulo: ".*/  $id_articulo = $id_articulo ;
-        /*print "<br>cantidad: ".   */  $cantidad = 1 ;
-        /*print "<br>precio: ".     */  $precio = $precio ;
-                                        $existencia = 1 ;
+        $idVentas = $idVentas ;
+        $idCarrito = null ;
+        $idArticulo = $idArticulo ;
+        $cantidad = 1 ;
+        $precio = $precio ;
+        $analizado = 1 ;
     for ($i=0; $i < $countcarrito; $i++) { 
-        if ($getCarrito [$i]["articuloDNI"] == $id_articulo && $getCarrito [$i]["clienteDNI"] == $usuario) {
-            /*print "<br><br>Usuario: ".*/  $usuario = $usuario ;
-            /*print "<br>id_carrito: ". */  $id_carrito = $getCarrito [$i]["carritoDNI"] ;
-            /*print "<br>id_articulo: ".*/  $id_articulo = $id_articulo ;
-            /*print "<br>cantidad: ".   */  $cantidad = $getCarrito [$i]["ca_cantidad"] + 1 ;
-            /*print "<br>precio: ".     */  $precio = $getCarrito [$i]["ar_precio"] * $cantidad ;
-                                            $existencia = 1 ;
+        if ($getCarrito [$i]["articuloDNI"] == $idArticulo && $getCarrito [$i]["ventaDNI"] == $idVentas) {
+            $idVentas = $idVentas ;
+            $idCarrito = $getCarrito [$i]["carritoDNI"] ;
+            $idArticulo = $idArticulo ;
+            $cantidad = $getCarrito [$i]["ca_cantidad"] + 1 ;
+            $precio = $getCarrito [$i]["ar_precio"] * $cantidad ;
+            $analizado = 1 ;
         }
     }
 }
 
-
-
-        print "<br><br><br><br>Usuario: ".$usuario ;
-        print "<br>id_carrito: ".$id_carrito ;
-        print "<br>id_articulo: ".$id_articulo ;
-        print "<br>cantidadd: ".$cantidad ;
-        print "<br>precio: ".$precio ;
-        print "<br>existencia: ".$existencia ;
-        print "<br>Total: ".$total ;
-
-        print "<div id='existencia' data-id='".$existencia."'></div>" ;
-        print "<div id='usuario' data-id='".$usuario."'></div>" ;
-        print "<div id='id_carrito' data-id='".$id_carrito."'></div>" ;
-        print "<div id='id_articulo' data-id='".$id_articulo."'></div>" ;
+        print "<div id='analizado' data-id='".$analizado."'></div>" ;
+        print "<div id='idVentas' data-id='".$idVentas."'></div>" ;
+        print "<div id='idCarrito' data-id='".$idCarrito."'></div>" ;
+        print "<div id='idArticulo' data-id='".$idArticulo."'></div>" ;
         print "<div id='cantidad' data-id='".$cantidad."'></div>" ;
         print "<div id='precio' data-id='".$precio."'></div>" ;
-        print "<div id='total' data-id='".$total."'></div>" ;
-
-        $existencia = 0 ;
+        print "<div id='tottal' data-id='".$total."'></div>" ;
+        print "<div id='status' data-id='".$status."'></div>" ;
+        $analizado = 0 ;

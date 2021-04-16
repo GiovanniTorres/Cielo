@@ -1,7 +1,16 @@
-function condiciones () {
-  let id_articulo = null
-  let precio = null
-  obtenerTablaCarrito (id_articulo, precio)
+function main () {
+  accion = "mostrar"
+  getVenta (accion)
+  
+  const lista_articulos = document.getElementById ("lista_articulos")
+  lista_articulos.addEventListener ('click', 
+  function (e) {
+    e.preventDefault ()
+    if (e.target.classList.contains ('comprar')) {
+      const producto = e.target.parentElement.parentElement
+      getVenta (accion = "insertar", producto);
+    }
+  });
 }
 
 function AJAXObject () {
@@ -12,62 +21,98 @@ function AJAXObject () {
   }
 }
 
-function obtenerTablaCarrito (id_articulo, precio) {
-  usuario = document.getElementById ("usuario").dataset.id
-  ajaxGetTabla = AJAXObject ()
-  ajaxGetTabla.onreadystatechange = function () {
-    if (ajaxGetTabla.readyState == 4) {
-      if (ajaxGetTabla.status == 200) {
-        document.getElementById ("disp").innerHTML = ajaxGetTabla.responseText
-        existencia = document.getElementById ("existencia").dataset.id
-        total = document.getElementById ('total').dataset.id
-        alert ("total: "+total)
-        if (existencia == 1 ) {
-          id_carrito = document.getElementById ('id_carrito').dataset.id
-          cantidad = document.getElementById ('cantidad').dataset.id
-          precio = document.getElementById ('precio').dataset.id
-          alert("usuario: "+usuario+"\nid_carrito: "+id_carrito+"\nid_articulo: "+id_articulo+"\ncantidad: "+cantidad+"\nprecio: "+precio)
-          setTransaccion (usuario, id_carrito, id_articulo, cantidad, precio)
+function getVenta (accion, producto) {
+  let usuario = document.getElementById ("usuario").dataset.id
+  ajaxGetVenta = AJAXObject ()
+  ajaxGetVenta.onreadystatechange = function () {
+    if (ajaxGetVenta.readyState == 4) {
+      if (ajaxGetVenta.status == 200) {
+        document.getElementById ("id_venta").innerHTML = ajaxGetVenta.responseText
+        idVentas = document.getElementById ("idVentas").dataset.id
+        document.getElementById ("idventa").innerHTML = idVentas
+        ventacuentas = document.getElementById ("countventas").dataset.id
+        status = document.getElementById ("status").dataset.id
+        if (accion === "mostrar") {
+          let idArticulo = null
+          let precio = null
+          getCarrito (idVentas, idArticulo, precio)
         }
-      } else {
-      console.log ("El servidor no contestó/nError "+ajaxGetTabla.status+": "+ajaxGetTabla.statusText)
+        if (accion === "insertar") {
+          if (status != "Pendiente") {
+            setVenta (usuario, ventacuentas, status, producto)
+          } 
+          if (status === "Pendiente") {
+            obtenerInformacionProducto (idVentas, producto)
+          }
+        }
+      } 
+      else {
+        console.log ("El servidor no contestó/nError "+ajaxGetVenta.status+": "+ajaxGetVenta.statusText)
       }
     }
   }
-  ajaxGetTabla.open ("POST", "http://localhost/getters/getCarritoAJAX.php",true)
-  ajaxGetTabla.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
-  ajaxGetTabla.send ("usuario="+usuario+"&&id_articulo="+id_articulo+"&&precio="+precio)
-  const lista_articulos = document.getElementById ("lista_articulos")
-  lista_articulos.addEventListener ('click', seleccionarProducto )
-  
+  ajaxGetVenta.open ("POST", "http://localhost/getters/getVentaAjax.php",true)
+  ajaxGetVenta.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
+  ajaxGetVenta.send ("usuario="+usuario)
 }
 
-function seleccionarProducto (e) {
-  e.preventDefault ()
-  if (e.target.classList.contains ('comprar')) {
-    const producto = e.target.parentElement.parentElement
-    obtenerInformacionProducto (producto)
+function setVenta (usuario, ventacuentas, status, producto) {
+  ajaxSetVenta = AJAXObject ()
+  ajaxSetVenta.onreadystatechange = function () {
+    if (ajaxSetVenta.readyState == 4) {
+      if (ajaxSetVenta.status == 200) {
+        document.getElementById ("id_venta").innerHTML = ajaxSetVenta.responseText
+        getVenta (accion = "insertar", producto)
+      } else {
+        console.log ("El servidor no contestó/nError "+ajaxSetVenta.status+": "+ajaxSetVenta.statusText)
+      }
+    }
   }
+  ajaxSetVenta.open ("POST", "http://localhost/setters/setVentaAjax.php",true)
+  ajaxSetVenta.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
+  ajaxSetVenta.send ("usuario="+usuario+"&&ventacuentas="+ventacuentas+"&&status="+status)
 }
 
-function obtenerInformacionProducto (producto) {
+function getCarrito (idVentas, idArticulo, precio) {
+  ajaxGetTablaCarrito = AJAXObject ()
+  ajaxGetTablaCarrito.onreadystatechange = function () {
+    if (ajaxGetTablaCarrito.readyState == 4) {
+      if (ajaxGetTablaCarrito.status == 200) {
+        document.getElementById ("disp").innerHTML = ajaxGetTablaCarrito.responseText
+        analizado = document.getElementById ("analizado").dataset.id
+        if (analizado == 1 ) {
+          idCarrito = document.getElementById ('idCarrito').dataset.id
+          cantidad = document.getElementById ('cantidad').dataset.id
+          precio = document.getElementById ('precio').dataset.id
+          setTransaccion (idCarrito, idArticulo, idVentas, cantidad, precio)
+        }
+      } else {
+      console.log ("El servidor no contestó/nError "+ajaxGetTablaCarrito.status+": "+ajaxGetTablaCarrito.statusText)
+      }
+    }
+  }
+  ajaxGetTablaCarrito.open ("POST", "http://localhost/getters/getCarritoAJAX.php",true)
+  ajaxGetTablaCarrito.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
+  ajaxGetTablaCarrito.send ("idVentas="+idVentas+"&&idArticulo="+idArticulo+"&&precio="+precio)
+}
+
+function obtenerInformacionProducto (idVentas, producto) {
   const objeto_articulo = {
     arprecio: producto.querySelector ('.precio_ar').dataset.id,
     id_producto: producto.querySelector ('.id_producto').dataset.id
   }
   let precio = objeto_articulo.arprecio
-  let id_articulo = objeto_articulo.id_producto
-  obtenerTablaCarrito (id_articulo, precio)
+  let idArticulo = objeto_articulo.id_producto
+  getCarrito (idVentas, idArticulo, precio)
 }
 
-function setTransaccion (usuario, id_carrito, id_articulo, cantidad, precio) {
-  //alert ("setTransaCcion usuario: "+usuario+"\nid_carrito: "+id_carrito+"\nid_artiulo: "+id_articulo+"\ncantidad: "+cantidad+"\nprecio: "+precio)
+function setTransaccion (idCarrito, idArticulo, idVentas, cantidad, precio) {
   ajaxSetTransaccion = AJAXObject ()
   ajaxSetTransaccion.onreadystatechange = function () {
     if (ajaxSetTransaccion.readyState == 4) {
       if (ajaxSetTransaccion.status == 200) {
         document.getElementById ("disp").innerHTML = ajaxSetTransaccion.responseText
-        condiciones ()
+        main (accion="mostrar")
       } else {
         console.log ("El servidor no contestó/nError "+ajaxSetTransaccion.status+": "+ajaxSetTransaccion.statusText)
       }
@@ -75,7 +120,7 @@ function setTransaccion (usuario, id_carrito, id_articulo, cantidad, precio) {
   }
   ajaxSetTransaccion.open ("POST", "http://localhost/setters/setTransaccionAjax.php",true)
   ajaxSetTransaccion.setRequestHeader ("Content-Type", "application/x-www-form-urlencoded")
-  ajaxSetTransaccion.send ("usuario="+usuario+"&&id_carrito="+id_carrito+"&&id_articulo="+id_articulo+"&&cantidad="+cantidad+"&&precio="+precio)
+  ajaxSetTransaccion.send ("idCarrito="+idCarrito+"&&idArticulo="+idArticulo+"&&idVentas="+idVentas+"&&cantidad="+cantidad+"&&precio="+precio)
 }
 
-window.addEventListener ("load", condiciones)
+window.addEventListener ("load", main)

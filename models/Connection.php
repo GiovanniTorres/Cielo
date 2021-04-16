@@ -10,6 +10,7 @@ abstract class Connection {
     protected $rows = array () ;
 
     abstract protected function get () ;
+    abstract protected function set () ;
 
     private function open_database () {
         $this->connected = new mysqli (

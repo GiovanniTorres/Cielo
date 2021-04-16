@@ -53,13 +53,11 @@ CREATE TABLE ventas (
 CREATE TABLE carrito (
     carritoDNI INT NOT NULL AUTO_INCREMENT ,
     articuloDNI INT NOT NULL ,
-    clienteDNI INT NOT NULL,
     ventaDNI INT NOT NULL ,
     ca_cantidad DECIMAL (7,2) ,
     ca_precio_cant DECIMAL (7,2) ,
     PRIMARY KEY (carritoDNI) ,
     FOREIGN KEY (articuloDNI) REFERENCES articulos (articuloDNI) ON UPDATE CASCADE ON DELETE CASCADE ,
-    FOREIGN KEY (clienteDNI) REFERENCES clientes (clienteDNI) ON UPDATE CASCADE ON DELETE CASCADE ,
     FOREIGN KEY (ventaDNI) REFERENCES ventas (ventaDNI) ON UPDATE CASCADE ON DELETE CASCADE
 ) ;
 INSERT INTO administradores (adminDNI, ad_nombre, ad_apellidos, ad_edad, ad_rfc, ad_mail, ad_telefono, ad_direccion, ad_cp) VALUES
@@ -91,9 +89,9 @@ INSERT INTO clientes (clienteDNI, adminDNI, cl_nombre, cl_apellidos, cl_usuario,
 (NULL, 1, 'Ricardo', 'Torres Caballero', 'Chichald', 'root', 53, 'MIGC6704778D8', '4444444444', 'ricardotorresf@gmail.com', 'calle 12, colonia, municipio, estado, pais', '52040', 'mvcxdfyujmvfr567uyr456yhbvcde45tgvcde4tgvfr6yhgyuhgtyuhyuhgyhbgtyhyghuyghuyhuyhju7hu76ty654r4er54edrewdredfgtrfghuyhji8io98yhji876wqazxcvbhji8765re', 'Daniela Torres Caballero', 'gtdhhggtyutfh nhv nhv  njhgbhg nbv  nb  mjuygb jhgc njgv njhytdxcvbgresx gfredxc bgredxc bgfv gdc nhujbnkkn nmkokmnkkn nkn cfv vfdcv vdscvcsscvdfv ggb byb hujn kn mm mlm mlmmplmplmkoknjkjnnjij bhjjhb bhhb hv vgv cfc cfrccc cdccdwsdccsqscvcdefvvffv gg bh nn njjn  njn jn knkkkokmkmkokkjn jijhuhvccffc cf cdwdcwdc cdwdc  cdwdv vfrrgb hujn  mkoplm  ,lujmnhg vdedc cxswdc frfv bhyujn okm kjhy.9876rfvh865rfvbj8tfvnj8.') ;
 INSERT INTO ventas (ventaDNI, clienteDNI, adminDNI, ve_fecha_hora, ve_total, ve_statpaq) VALUES 
 (NULL, 3, 1, '2020-11-17 00:00:01', 500.00, 'Pendiente') ,
-(NULL, 1, 1, '2020-11-18 00:00:01', 750.00, 'Enviado') ;
-INSERT INTO carrito (carritoDNI, articuloDNI, clienteDNI, ventaDNI, ca_cantidad, ca_precio_cant) VALUES 
-(1, 3, 1, 1, 1.00, 252.00) ,
-(2, 7, 2, 1, 1.00, 256.00) ;
+(NULL, 1, 2, '2020-11-18 00:00:01', 750.00, 'Enviado') ;
+INSERT INTO carrito (carritoDNI, articuloDNI, ventaDNI, ca_cantidad, ca_precio_cant) VALUES 
+(NULL, 3, 1, 1.00, 252.00) ,
+(NULL, 7, 2, 1.00, 256.00) ;
 USE cielo ;
 DROP DATABASE cielo ;

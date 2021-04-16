@@ -9,4 +9,6 @@ class ArticuloModel extends Connection {
         }
         return $data ;
     }
+
+    public function set () {}
 }

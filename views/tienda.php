@@ -1,6 +1,6 @@
+<div class="text-dark" id="idventa"></div>
 <?php require_once ("./getters/getArticulo.php"); 
 $divide = explode ("/", $_GET["r"]) ;
-
 /*Grupo actual de paginas_llenas de 7*/
 $grupo_actual = $divide [1];
 /*Página actual*/
@@ -111,6 +111,7 @@ print "<br>Página final: ".$pagina_final ;
 print "<br>Página inicial: ".$pagina_inicial ;
 */
 ?>
+<div class="p-1 col-md-2" id="id_venta"></div>
 
 <div class="container borde">
     <div class="row p-4 text-1">
@@ -128,21 +129,21 @@ print "<br>Página inicial: ".$pagina_inicial ;
                         <div class="container" id="lista_articulos">
                             <div class="row">
                                 <?php for ($l=$elemento_inicial-1 ; $l <= $elemento_final-1 ; $l++) { ?>
-                                    <div class="col-md-4 borde borde-danger nopaddin borde border-primary p-1">
+                                    <div class="col-md-4 borde borde-danger nopaddin borde border-primary pb-2 pr-1 pl-1">
                                         <div class="border-4 rounded p-0">
                                             <div class="card-header text-center bg-4 small nombre_producto" dni="1">
                                                 <?php print $getarticulo [$l]["ar_nombre"] ; ?>
                                             </div> 
-                                            <div class="card-body p-0" >
-                                                <?php print "<img src='http://localhost".$getarticulo[$l]['ar_imagen'].".jpg' class='imagen'>" ; ?>    
+                                            <div class="card-body p-2">
+                                                <?php print "<img src='http://localhost".$getarticulo[$l]['ar_imagen'].".jpg' class='imagen rounded'>" ; ?>    
                                             </div>
-                                            <div class="card-body p-1 text-center precio_ar" data-id="<?php print $getarticulo [$l]['ar_precio'] ; ?>">
-                                                <h5>$ <?php print $getarticulo [$l]["ar_precio"] ; ?>
+                                            <div class="card-body py-0 pr-2 pl-2 text-center precio_ar" data-id="<?php print $getarticulo [$l]['ar_precio'] ; ?>">
+                                                <div class="border border-primary text-secondary rounded py-2"><b>$ <?php print $getarticulo [$l]["ar_precio"] ; ?></b></div>
                                             </div>
                                                 <span class="id_producto" data-id="<?php print $getarticulo [$l]['articuloDNI'] ; ?>"></span> 
-                                            <div class="p-2">
+                                            <!--div class="p-2">
                                                 <a href="tienda/detalles/<?php print $l ?>" class="col-md-12 btn btn-light border border-primary text-primary">Ver</a>
-                                            </div>
+                                            </div-->
                                             <div class="p-2">
                                             <a href="" class="col-md-12 btn btn-primary comprar">Comprar<?php //print $l ?></a>
                                             </div>
@@ -154,7 +155,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                     </div>
 
                     <div class="col-md-4 bg-0 p-2">
-                        <div class="border-4 p-0" id="tdisp">
+                        <div class="border-4 rounded" id="tdisp">
                             <table width="100%" >
                                 <thead>
                                     <tr>
@@ -167,9 +168,9 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                 </thead>
                                 <tbody id="disp"></tbody>
                             </table>
-                        </div>
+                        </div><br>
 
-                        <div class="border-4 p-0" id="disp2">
+                        <div class="border-4 rounded" id="disp2">
                             <div class="container">
                                 <div class="row border">
                                     <div class="col-md-4 text-center p-0 borde">
@@ -185,7 +186,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                         <span class="xx_small">$</span>
                                     </div>
                                     <div class="col-md-3 text-center p-0 borde">
-                                        <span class="xx_small">Horario</span>
+                                        <span class="small" id="subtotal"></span>
                                     </div>
                                     
                                     <div class="col-md-4 text-center p-0 borde">
@@ -201,7 +202,7 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                         <span class="xx_small">$</span>
                                     </div>
                                     <div class="col-md-3 text-center p-0 borde">
-                                        <span class="xx_small">Horario</span>
+                                        <span class="small" id="iva"></span>
                                     </div>
 
                                     <div class="col-md-4 text-center p-0 borde">
@@ -217,15 +218,15 @@ print "<br>Página inicial: ".$pagina_inicial ;
                                         <span class="xx_small">$</span>
                                     </div>
                                     <div class="col-md-3 text-center p-0 borde">
-                                        <span class="xx_small">Horario</span>
+                                        <span class="small" id="total">Horario</span>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div><br />
                         <div class="container  col-md-12">
                             <div class="row">
                                 <div class="col-md-12 text-light p-0 borde text-center">
-                                    <a href="" class="col-md-12 xx_small text-light btn btn-1">Siguiente</a>
+                                    <a href="http://localhost/detalle" class="py-2 col-md-12 text-light btn btn-1">Siguiente</a>
                                 </div>
                             </div>
                         </div>

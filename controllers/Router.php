@@ -16,6 +16,8 @@ class Router {
             $viewscontroller->view ("tienda") ;
         } elseif ($divide [0] == "cliente") {
             $viewscontroller->view ($route) ;
+        } elseif ($divide [0] == "detalle") {
+            $viewscontroller->view ($route) ;
         } elseif ($divide [0] == "iniciar_sesion") {
             require_once ("./views/iniciar_sesion.php") ;
         } elseif ($divide[0] == "exit") {
