@@ -2,7 +2,7 @@
 <table>
     <thead>
         <tr>
-            <th>DNI</th>
+            <th>DNISSS</th>
             <th>Articulo</th>
             <th>Venta</th>
             <th>Cantidad</th>
